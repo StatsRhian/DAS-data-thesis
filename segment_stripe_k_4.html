@@ -1,0 +1,55 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="generator" content="R package animation 2.4">
+	<title>Animations Using the R Language</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/scianimator.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css">
+
+	<script src="js/jquery-1.4.4.min.js"></script>
+	<script src="js/jquery.scianimator.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/languages/r.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+
+	<div class="scianimator"><div id="segment_stripe_k_4_" style="display: inline-block;"></div></div>
+	<div class="scianimator" style="width: 480px; text-align: left"><pre><code class="r">## Animations generated in R version 3.3.2 (2016-10-31)
+##   using the package animation
+library(mclust)
+library(rARPACK)
+library(animation)
+library(streamMOA)
+library(rJava)
+library(stream)
+library(proxy)
+ani.options(interval = 0.2, loop = FALSE)
+for (t in (sizeInit + 1):runs) {
+    if (t%%batchSize == 0) {
+        update(clustream, stream, batchSize)
+        assignment = as.vector(get_assignment(clustream, 
+            data[1:(t + sizeInit), ], type = "macro"))
+        segment_lines = which(diff(assignment) != 0)[rle(assignment)$lengths > 
+            20]
+        segment_lines = segment_lines[-c(1, length(segment_lines))]
+        par(mfrow = c(2, 3), las = 1)
+        for (i in c(1:nDim)) {
+            plot(1:N, data[, i], main = i, type = "l")
+            abline(v = (t + sizeInit), col = 4)
+            abline(v = segment_lines, col = 2)
+        }
+    }
+}
+## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Other packages: mclust 5.2.1, rARPACK 0.11-0, animation 2.4, streamMOA 1.1-2, rJava 0.9-8, stream 1.2-3, proxy
+## 0.4-16</code></pre></div>
+	<script src="js/segment_stripe_k_4_.js"></script>
+<!-- highlight R code -->
+
+</body>
+</html>

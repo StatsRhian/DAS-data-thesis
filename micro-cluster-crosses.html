@@ -1,0 +1,56 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="generator" content="R package animation 2.4">
+	<title>Micro-cluster centers</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/scianimator.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css">
+
+	<script src="js/jquery-1.4.4.min.js"></script>
+	<script src="js/jquery.scianimator.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/languages/r.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+
+	<div class="scianimator"><div id="moving-micro-crosses" style="display: inline-block;"></div></div>
+	<div class="scianimator" style="width: 480px; text-align: left"><pre><code class="r">## Plots the location of micro-cluster centers as the
+##   stream progresses. Animation updates every 100 time
+##   steps.  # 100 micro-clusters, 7 macro-clusters, 10000
+##   data points
+library(rARPACK)
+library(animation)
+library(streamMOA)
+library(rJava)
+library(stream)
+library(proxy)
+ani.options(interval = 0.2)
+for (t in (sizeInit + 1):runs) {
+    if (t%%batchSize == 0) {
+        update(clustream, stream, batchSize)
+        centers = get_centers(clustream, type = "micro")
+        macro <- kmeans(centers, nClust, nstart = 20)
+        points_col = rep("gray", N)
+        points_col[1:(t + sizeInit)] = "black"
+        par(mfrow = c(2, 3), las = 1)
+        for (i in c(1:6)) {
+            plot(1:N, data[, i], main = i, col = points_col)
+            points(rep((sizeInit + t), nMicro), centers[, 
+              i], col = cols[rank(macro$centers[, 5])[macro$cluster]], 
+              pch = 3)
+        }
+    }
+}
+## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Other packages: rARPACK 0.11-0, animation 2.4, streamMOA 1.1-2, rJava 0.9-8, stream
+## 1.2-3, proxy 0.4-16</code></pre></div>
+	<script src="js/moving-micro-crosses.js"></script>
+<!-- highlight R code -->
+
+</body>
+</html>

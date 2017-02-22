@@ -1,0 +1,69 @@
+---
+title: "DAS data first look"
+author: "Rhian Davies"
+date: "15 February 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#read in libraries
+library("ggplot2")
+library("dplyr")
+library("reshape")
+```
+
+## R Markdown
+
+* The sample Rebecca sent to me is 100,000 x 790.
+* The data is thinned, we have every 10th timepoint. 
+* My initial work just looks at first 10,000 data points
+
+```{r read_in_data}
+x = read.csv("data/minisample.csv", header = T, stringsAsFactors = F)
+```
+
+## The features
+
+* There are 790 features each corresponding to an acoustic sensors?
+* Earlier ones may have more information? Any application knowledge Idris?
+
+```{r bunch_o_figs, fig.height=3, fig.width=14, echo = FALSE}
+par(mfrow=c(1,2), las=1)
+for(i in c(1,2,3,4,5,6,50, 75,100,200,400,700)) {
+  plot(1:nrow(x), x[,i], main=i, type = "l")
+}
+```
+
+
+# Clustering raw data using just first 6 features (raw, no pca)
+
+* First we try simple offline k-means
+```{r offline_kmeans, fig.height=4, fig.width=14, echo = FALSE}
+off_k = kmeans(x[,1:6],7 )
+par(mfrow=c(1,2), las=1)
+for(i in c(1:6)) {
+  plot(1:nrow(x), x[,i], main=i, type = "p", col = off_k$cluster)
+}
+```
+
+The size of the clusters are `r off_k$size`. 
+
+
+# PCA 
+
+```{r pca_plots, fig.height=4, fig.width=14, echo = FALSE}
+pca <- prcomp(x, center = TRUE, scale = TRUE) 
+plot(pca)
+
+
+off_k_pca = kmeans(pca$x[,1:6], 7 )
+par(mfrow=c(1,2), las=1)
+for(i in c(1:6)) {
+  plot(1:nrow(pca$x), pca$x[,i], main=i, type = "p", col = off_k_pca$cluster)
+}
+
+```
+
+* Kmeans using just first 6 principle components
+* 7 clusters
+

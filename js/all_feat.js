@@ -1,0 +1,12 @@
+(function($) {
+    $(document).ready(function() {
+	
+	$('#all_feat').scianimator({
+	    'images': ['images/all_feat1.png', 'images/all_feat2.png', 'images/all_feat3.png', 'images/all_feat4.png', 'images/all_feat5.png', 'images/all_feat6.png', 'images/all_feat7.png', 'images/all_feat8.png', 'images/all_feat9.png', 'images/all_feat10.png', 'images/all_feat11.png', 'images/all_feat12.png', 'images/all_feat13.png', 'images/all_feat14.png', 'images/all_feat15.png', 'images/all_feat16.png', 'images/all_feat17.png', 'images/all_feat18.png', 'images/all_feat19.png', 'images/all_feat20.png', 'images/all_feat21.png', 'images/all_feat22.png', 'images/all_feat23.png', 'images/all_feat24.png', 'images/all_feat25.png', 'images/all_feat26.png', 'images/all_feat27.png', 'images/all_feat28.png', 'images/all_feat29.png', 'images/all_feat30.png', 'images/all_feat31.png', 'images/all_feat32.png', 'images/all_feat33.png', 'images/all_feat34.png', 'images/all_feat35.png', 'images/all_feat36.png', 'images/all_feat37.png', 'images/all_feat38.png', 'images/all_feat39.png', 'images/all_feat40.png', 'images/all_feat41.png', 'images/all_feat42.png', 'images/all_feat43.png', 'images/all_feat44.png', 'images/all_feat45.png', 'images/all_feat46.png', 'images/all_feat47.png', 'images/all_feat48.png', 'images/all_feat49.png', 'images/all_feat50.png', 'images/all_feat51.png', 'images/all_feat52.png', 'images/all_feat53.png', 'images/all_feat54.png', 'images/all_feat55.png', 'images/all_feat56.png', 'images/all_feat57.png', 'images/all_feat58.png', 'images/all_feat59.png', 'images/all_feat60.png', 'images/all_feat61.png', 'images/all_feat62.png', 'images/all_feat63.png', 'images/all_feat64.png', 'images/all_feat65.png', 'images/all_feat66.png', 'images/all_feat67.png', 'images/all_feat68.png', 'images/all_feat69.png', 'images/all_feat70.png', 'images/all_feat71.png', 'images/all_feat72.png', 'images/all_feat73.png', 'images/all_feat74.png', 'images/all_feat75.png', 'images/all_feat76.png', 'images/all_feat77.png', 'images/all_feat78.png', 'images/all_feat79.png', 'images/all_feat80.png', 'images/all_feat81.png', 'images/all_feat82.png', 'images/all_feat83.png', 'images/all_feat84.png', 'images/all_feat85.png', 'images/all_feat86.png', 'images/all_feat87.png', 'images/all_feat88.png', 'images/all_feat89.png', 'images/all_feat90.png'],
+	    'width': 480,
+	    'delay': 200,
+	    'loopMode': 'none'
+	});
+	$('#all_feat').scianimator('play');
+    });
+})(jQuery);
